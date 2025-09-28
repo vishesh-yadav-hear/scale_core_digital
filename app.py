@@ -24,5 +24,16 @@ def submit():
 def data():
     return send_file('c_data.csv',as_attachment=True)
 
+
+@app.route('/datarm')
+def datarm():
+    with open('c_data.csv','r') as f:
+        lines = f.readlines()
+    if lines:
+        with open('c_data.csv','w') as f:
+            f.write(lines[0])
+    return render_template('index.html')
+
+
 if __name__ == "__main__":
     app.run()
